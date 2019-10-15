@@ -1,0 +1,42 @@
+from django.db import models
+from categories.models import Categories
+from usermanagement.models import User
+from contacts.models import Contacts
+
+# Create your models here.
+class Listings(models.Model):
+    categorie = models.ForeignKey(Categories ,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    contacts=models.ForeignKey(Contacts,on_delete=models.CASCADE)
+    is_service=models.BooleanField(default=False)
+    is_product=models.BooleanField(default=False)
+    is_offer=models.BooleanField(default=False)
+    Bussiness_name=models.CharField(max_length=150,null=False,blank=False)
+    Discription=models.TextField(max_length=200)
+    tag_line=models.CharField(max_length=50)
+    content=models.TextField(max_length=200)
+    Fixed_price=models.DecimalField(max_digits=9,decimal_places=2)
+    min_price=models.DecimalField(max_digits=9,decimal_places=2)
+    max_price = models.DecimalField(max_digits=9, decimal_places=2)
+    offer_startdate=models.DateField()
+    offer_endDate=models.DateField()
+    offer_starttime=models.TimeField()
+    offer_endtime=models.TimeField()
+    contact_time=models.DateTimeField()
+    phone=models.PositiveIntegerField()
+    email=models.EmailField()
+    location_map=models.CharField(max_length=50)
+    city=models.CharField(max_length=50)
+    street=models.CharField(max_length=50)
+    area=models.CharField(max_length=50)
+    state=models.CharField(max_length=50)
+    zip_code=models.IntegerField()
+    immage1=models.ImageField(upload_to='pictures/%Y/%m/%d/', max_length=255, null=True, blank=True)
+    immage2=models.ImageField(upload_to='pictures/%Y/%m/%d/', max_length=255, null=True, blank=True)
+    immage3=models.ImageField(upload_to='pictures/%Y/%m/%d/', max_length=255, null=True, blank=True)
+    immage4=models.ImageField(upload_to='pictures/%Y/%m/%d/', max_length=255, null=True, blank=True)
+    immage5=models.ImageField(upload_to='pictures/%Y/%m/%d/', max_length=255, null=True, blank=True)
+    stock=models.IntegerField()
+    video_url=models.URLField()
+    termsandconditons=models.TimeField()
+    is_aggrement=models.BooleanField(default=False)
